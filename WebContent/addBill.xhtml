@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+<body>
+ <h:form> 
+	<p:panel id="billregister" header="Cadastro de conta">
+    	<h3>Nota fiscal:</h3>
+	   <span class="ui-float-label">
+	       <p:inputText id="float-input" value="#{billsController.bill.invoice}" />
+	   </span>
+	   
+	   <h3>Valor:</h3>
+	   <span class="ui-float-label">
+	       <p:inputText id="float-input1" value="#{billsController.bill.value}" />
+	   </span>
+	   
+	   <h3>Fornecedor:</h3>
+	   <span class="ui-float-label">
+	       <p:inputText id="float-input2" value="#{billsController.bill.provider}" />
+	   </span>
+	   
+	   <h3>Data de vencimento:</h3>
+	   <span class="ui-float-label">
+	       <p:inputText id="float-input3" value="#{billsController.bill.dueDate}" />
+	   </span>
+	   
+	   	<p:commandButton value="Salvar" style="margin-right:20px;" action="#{billsController.registerBill}"/>
+	   
+    </p:panel>
+    
+</h:form>
+</body>
+
+</html>

@@ -9,10 +9,26 @@
 
 </h:head>
 <body>
-<h:form> 
-	<p:panel header="Tela principal">
-    	<h:outputText value="Login e senhas corretos."/>
-    </p:panel>
+<h:form>
+	<p:dataTable var="bill" value="#{billsController.bills}">
+	    <p:column headerText="Data de vencimento">
+	        <h:outputText value="#{bill.dueDate}" />
+	    </p:column>
+	 
+	    <p:column headerText="Valor">
+	        <h:outputText value="#{bill.value}" />
+	    </p:column>
+	 
+	    <p:column headerText="Fornecedor">
+	        <h:outputText value="#{bill.provider}" />
+	    </p:column>
+	 
+	    <p:column headerText="Nota fiscal">
+	        <h:outputText value="#{bill.invoice}" />
+	    </p:column>
+	</p:dataTable>
+	
+	<p:commandButton value="Adicionar conta a vencer" style="margin-right:20px;" action="#{billsController.addAccount}"/>
 </h:form>
 </body>
 
