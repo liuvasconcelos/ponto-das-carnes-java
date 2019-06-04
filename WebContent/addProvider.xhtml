@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+<body>
+ <h:form> 
+	<p:panel id="addprovider" header="Cadastro de fornecedor">
+       <h3>Empresa:</h3>
+	   <span class="ui-float-label">
+	       <p:inputText id="float-input4" value="#{providersController.provider.company}" />
+	   </span>
+	   
+	   <h3>Representante:</h3>
+	   <span class="ui-float-label">
+	       <p:inputText id="float-input5" value="#{providersController.provider.companyPerson}" />
+	   </span>
+	   
+	   <h3>Telefone:</h3>
+	   <span class="ui-float-label">
+	       <p:inputMask id="float-input6" mask="(99)99999-9999" value="#{providersController.provider.cellphone}" />
+	   </span>
+	  
+	   	<p:commandButton value="Salvar" style="margin-right:20px;" action="#{providersController.registerProvider}"/>
+	   
+    </p:panel>
+    
+</h:form>
+</body>
+
+</html>

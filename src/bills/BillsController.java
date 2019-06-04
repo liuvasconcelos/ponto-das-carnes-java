@@ -1,7 +1,10 @@
 package bills;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+
+import providers.ProviderDAO;
 
 @ManagedBean
 public class BillsController {
@@ -29,8 +32,19 @@ public class BillsController {
 	
 	public String registerBill() {		
 		BillsDAO dao = new BillsDAO();
-		dao.registerBill(newBill);
-		
+		dao.registerBill(newBill);		
 		return "mainPage";
 	}
+	
+	public String addAProvider() {
+		return "addProvider";
+	}
+	
+	public List<String> getProviders() {
+		ProviderDAO dao = new ProviderDAO();
+		List<String> list = dao.getProviders();
+
+		return list;
+	}
+
 }

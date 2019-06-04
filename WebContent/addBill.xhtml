@@ -18,17 +18,18 @@
 	   
 	   <h3>Valor:</h3>
 	   <span class="ui-float-label">
-	       <p:inputText id="float-input1" value="#{billsController.bill.value}" />
+	       <p:inputMask id="float-input1" mask="99.99" value="#{billsController.bill.value}" />
 	   </span>
 	   
 	   <h3>Fornecedor:</h3>
-	   <span class="ui-float-label">
-	       <p:inputText id="float-input2" value="#{billsController.bill.provider}" />
-	   </span>
-	   
+	   <p:selectOneMenu id="providerselection" value="#{billsController.bill.provider}" style="width:150px">
+          <f:selectItem itemLabel="Selecione o forncedor" itemValue="" noSelectionOption="true" />
+          <f:selectItems value="#{billsController.providers}" />
+       </p:selectOneMenu>
+	
 	   <h3>Data de vencimento:</h3>
 	   <span class="ui-float-label">
-	       <p:inputText id="float-input3" value="#{billsController.bill.dueDate}" />
+	       <p:inputMask id="float-input3" mask="99/99/9999" value="#{billsController.bill.dueDate}"/>
 	   </span>
 	   
 	   	<p:commandButton value="Salvar" style="margin-right:20px;" action="#{billsController.registerBill}"/>
