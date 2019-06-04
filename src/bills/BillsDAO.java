@@ -16,7 +16,7 @@ public class BillsDAO {
 		
 		try {
 			ConexaoDAO.conn.createStatement();
-			String sql = "SELECT * FROM bills ORDER BY due_date;";
+			String sql = "SELECT * FROM bills WHERE status = true ORDER BY due_date;";
 			
 			PreparedStatement ps = ConexaoDAO.conn.prepareStatement(sql);
 
@@ -43,7 +43,7 @@ public class BillsDAO {
 		
 		try {
 			ConexaoDAO.conn.createStatement();
-			String sql = "INSERT INTO bills (value, provider, invoice, due_date) VALUES (?, ?, ?, ?)";
+			String sql = "INSERT INTO bills (value, provider, invoice, due_date, status) VALUES (?, ?, ?, ?, true)";
 			
 			PreparedStatement ps = ConexaoDAO.conn.prepareStatement(sql);
 			
@@ -51,6 +51,26 @@ public class BillsDAO {
 			ps.setString(2, bill.getProvider());
 			ps.setString(3, bill.getInvoice());
 			ps.setString(4, bill.getDueDate());
+
+			ResultSet rs = ps.executeQuery();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void payBill(Bill bill) {
+		ConexaoDAO.createConnection();
+		
+		try {
+			ConexaoDAO.conn.createStatement();
+			String sql = "UPDATE bills SET status = false WHERE invoice = ? AND due_date = ?";
+			
+			PreparedStatement ps = ConexaoDAO.conn.prepareStatement(sql);
+			
+			ps.setString(1, bill.getInvoice());
+			ps.setString(2, bill.getDueDate());
 
 			ResultSet rs = ps.executeQuery();
 		

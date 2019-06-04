@@ -10,6 +10,15 @@ import providers.ProviderDAO;
 public class BillsController {
 		
 	private Bill newBill = new Bill();
+	private Bill selectedBill = new Bill();
+	
+	public Bill getSelectedBill() {
+		return this.selectedBill;
+	}
+	
+	public void setSelectedBill(Bill bill) {
+		this.selectedBill = bill;
+	}
 
 	public Bill getBill() {
 		return this.newBill;
@@ -45,6 +54,13 @@ public class BillsController {
 		List<String> list = dao.getProviders();
 
 		return list;
+	}
+	
+	public String payBill() {	
+		System.out.println("---------------"+ selectedBill.getInvoice());
+		BillsDAO dao = new BillsDAO();
+		dao.payBill(selectedBill);
+		return "mainPage";
 	}
 
 }

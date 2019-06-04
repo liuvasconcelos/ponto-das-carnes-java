@@ -26,6 +26,12 @@
 	    <p:column headerText="Nota fiscal">
 	        <h:outputText value="#{bill.invoice}" />
 	    </p:column>
+	    
+	    <p:column headerText="Marcar como pago">
+	        <p:commandButton value="X" style="margin-right:20px;" action="#{billsController.payBill}" oncomplete="#{billsController.bills}" >
+	        	<f:setPropertyActionListener value="#{bill}" target="#{billsController.selectedBill}" />
+	        </p:commandButton>
+	    </p:column>
 	</p:dataTable>
 	
 	<p:commandButton value="Adicionar conta a vencer" style="margin-right:20px;" action="#{billsController.addAccount}"/>

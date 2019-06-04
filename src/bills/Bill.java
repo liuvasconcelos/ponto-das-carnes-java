@@ -18,7 +18,6 @@ public class Bill {
 		this.provider = "";
 		this.invoice = "";
 		this.dueDate = "";
-		// TODO Auto-generated constructor stub
 	}
 	public Double getValue() {
 		return value;
