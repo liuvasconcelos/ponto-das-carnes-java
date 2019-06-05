@@ -6,35 +6,57 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-
+<style type="text/css">
+    .ui-dock-container-bottom
+{
+   background-image: none;
+   background-color: white;
+   border-width: 0px;
+}
+</style>
 </h:head>
 <body>
+
+<p:dock position="bottom" itemWidth="50" maxWidth="70">
+    <p:menuitem value="Lista de contas" icon="/public/lista.png" url="mainPage.jsf"/>
+    <p:menuitem value="Cadastro de contas" icon="/public/bill.png" url="addBill.jsf"/>
+    <p:menuitem value="Cadastro de fornecedor" icon="/public/fornecedor.png" url="addProvider.jsf"/>
+    <p:menuitem value="Sair" icon="/public/sair.png" url="index.jsf"/>
+</p:dock>
+
  <h:form> 
-	<p:panel id="billregister" header="Cadastro de conta">
-    	<h3>Nota fiscal:</h3>
-	   <span class="ui-float-label">
-	       <p:inputText id="float-input" value="#{billsController.bill.invoice}" />
-	   </span>
-	   
-	   <h3>Valor:</h3>
-	   <span class="ui-float-label">
-	       <p:inputMask id="float-input1" mask="99.99" value="#{billsController.bill.value}" />
-	   </span>
-	   
-	   <h3>Fornecedor:</h3>
-	   <p:selectOneMenu id="providerselection" value="#{billsController.bill.provider}" style="width:150px">
-          <f:selectItem itemLabel="Selecione o forncedor" itemValue="" noSelectionOption="true" />
-          <f:selectItems value="#{billsController.providers}" />
-       </p:selectOneMenu>
-	
-	   <h3>Data de vencimento:</h3>
-	   <span class="ui-float-label">
-	       <p:inputMask id="float-input3" mask="99/99/9999" value="#{billsController.bill.dueDate}"/>
-	   </span>
-	   
-	   	<p:commandButton value="Salvar" style="margin-right:20px;" action="#{billsController.registerBill}"/>
-	   
-    </p:panel>
+ 
+ <h:panelGrid column="1" style="align: center;">
+   <h:panelGroup style="display:block; text-align:left; margin-left: 100%">
+   
+	<h:form> 
+		<p:panel id="billregister" header="Cadastro de conta" style="width:350px;">
+		<h:panelGrid>
+	    	<h:outputText value="Nota fiscal:"/>
+	        <p:inputText id="float-input" value="#{billsController.bill.invoice}" style="width:300px;"/>
+		</h:panelGrid>
+		<h:panelGrid>
+	    	<h:outputText value="Valor (R$):(*)"/>
+	   		<p:inputMask id="float-input1" mask="99.99" value="#{billsController.bill.value}" style="width:300px;"/>
+		</h:panelGrid>
+		<h:panelGrid>
+		    <h:outputText value="Fornecedor:"/>
+		    <p:selectOneMenu id="providerselection" value="#{billsController.bill.provider}" style="width:270px">
+	          	<f:selectItem itemLabel="Selecione o fornecedor" itemValue="" noSelectionOption="true" />
+	          	<f:selectItems value="#{billsController.providers}" />
+      		</p:selectOneMenu>
+		</h:panelGrid>
+		<h:panelGrid>
+	    	<h:outputText value="Data de vencimento:(*)"/>
+	   		<p:inputMask id="float-input3" mask="99/99/9999" value="#{billsController.bill.dueDate}" style="width:300px;"/>
+		</h:panelGrid>
+		<h:panelGrid>
+			<p:commandButton value="Salvar" action="#{billsController.registerBill}" style="width:310px;"/>
+		</h:panelGrid>
+	    </p:panel>
+   	</h:form>
+   </h:panelGroup>
+</h:panelGrid>
     
 </h:form>
 </body>

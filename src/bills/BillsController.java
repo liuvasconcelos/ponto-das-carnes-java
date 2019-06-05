@@ -39,10 +39,14 @@ public class BillsController {
 		return "addBill";
 	}
 	
-	public String registerBill() {		
-		BillsDAO dao = new BillsDAO();
-		dao.registerBill(newBill);		
-		return "mainPage";
+	public String registerBill() {	
+		if (!this.newBill.getValue().equals(0) && !this.newBill.getDueDate().equals("")) {
+			BillsDAO dao = new BillsDAO();
+			dao.registerBill(newBill);		
+			return "mainPage";
+		} else {
+			return "addBill";
+		}
 	}
 	
 	public String addAProvider() {
@@ -57,10 +61,14 @@ public class BillsController {
 	}
 	
 	public String payBill() {	
-		System.out.println("---------------"+ selectedBill.getInvoice());
 		BillsDAO dao = new BillsDAO();
 		dao.payBill(selectedBill);
 		return "mainPage";
 	}
+	
+	public String logout() {
+		return "index";
+	}
+	
 
 }

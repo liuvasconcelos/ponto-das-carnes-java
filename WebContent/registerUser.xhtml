@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<body>
+<p:tooltip />
+<h:form> 
+ <h:panelGrid column="1" style="align: center;">
+   <h:panelGroup style="display:block; text-align:left; margin-left: 100%">
+   
+	<h:form> 
+		<p:panel id="userregister" header="Cadastro de usuário" style="width:350px;">
+		<h:panelGrid>
+	    	<h:outputText value="Nome completo:"/>
+	        <p:inputText id="name" value="#{loginController.user.fullName}" style="width:300px;"/>
+		</h:panelGrid>
+		<h:panelGrid>
+	    	<h:outputText value="Login:(*)"/>
+	   		<p:inputText id="login1" value="#{loginController.user.login}" style="width:300px;"/>
+		</h:panelGrid>
+		<h:panelGrid>
+		    <h:outputText value="Senha:(*)"/>
+   	        <p:inputMask id="password1" type="password" value="#{loginController.user.password}" style="width:300px;"/>
+		</h:panelGrid>
+			<p:commandButton value="Voltar" action="#{loginController.returnToLogin}" style="width:150px;"/>
+			<p:commandButton value="Salvar" action="#{loginController.registerUser}" style="width:150px;"/>
+	    </p:panel>
+   	</h:form>
+   </h:panelGroup>
+</h:panelGrid>
+    
+</h:form>
+</body>
+
+</html>

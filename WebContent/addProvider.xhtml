@@ -6,29 +6,51 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-
+<style type="text/css">
+    .ui-dock-container-bottom
+{
+   background-image: none;
+   background-color: white;
+   border-width: 0px;
+}
+</style>
 </h:head>
 <body>
+
+<p:dock position="bottom" itemWidth="50" maxWidth="70">
+    <p:menuitem value="Lista de contas" icon="/public/lista.png" url="mainPage.jsf"/>
+    <p:menuitem value="Cadastro de contas" icon="/public/bill.png" url="addBill.jsf"/>
+    <p:menuitem value="Cadastro de fornecedor" icon="/public/fornecedor.png" url="addProvider.jsf"/>
+    <p:menuitem value="Sair" icon="/public/sair.png" url="index.jsf"/>
+</p:dock>
+
  <h:form> 
-	<p:panel id="addprovider" header="Cadastro de fornecedor">
-       <h3>Empresa:</h3>
-	   <span class="ui-float-label">
-	       <p:inputText id="float-input4" value="#{providersController.provider.company}" />
-	   </span>
-	   
-	   <h3>Representante:</h3>
-	   <span class="ui-float-label">
-	       <p:inputText id="float-input5" value="#{providersController.provider.companyPerson}" />
-	   </span>
-	   
-	   <h3>Telefone:</h3>
-	   <span class="ui-float-label">
-	       <p:inputMask id="float-input6" mask="(99)99999-9999" value="#{providersController.provider.cellphone}" />
-	   </span>
-	  
-	   	<p:commandButton value="Salvar" style="margin-right:20px;" action="#{providersController.registerProvider}"/>
-	   
-    </p:panel>
+ 
+  
+ <h:panelGrid column="1" style="align: center;">
+   <h:panelGroup style="display:block; text-align:left; margin-left: 100%">
+   
+	<h:form> 
+		<p:panel id="addprovider" header="Cadastro de fornecedor" style="width:350px;">
+		<h:panelGrid>
+	    	<h:outputText value="Empresa:(*)"/>
+	        <p:inputText id="float-input4" value="#{providersController.provider.company}" style="width:300px;"/>
+		</h:panelGrid>
+		<h:panelGrid>
+	    	<h:outputText value="Representante:"/>
+	        <p:inputText id="float-input5" value="#{providersController.provider.companyPerson}" style="width:300px;"/>
+		</h:panelGrid>
+		<h:panelGrid>
+	    	<h:outputText value="Telefone:"/>
+	        <p:inputMask id="float-input6" mask="(99)99999-9999" value="#{providersController.provider.cellphone}" style="width:300px;"/>
+		</h:panelGrid>
+		<h:panelGrid>
+			<p:commandButton value="Salvar" action="#{providersController.registerProvider}" style="width:310px;"/>
+		</h:panelGrid>
+	    </p:panel>
+   	</h:form>
+   </h:panelGroup>
+</h:panelGrid>
     
 </h:form>
 </body>

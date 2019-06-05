@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -6,11 +7,26 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+<style type="text/css">
+    .ui-dock-container-bottom
+{
+   background-image: none;
+   background-color: white;
+   border-width: 0px;
+}
+</style>
 
 </h:head>
 <body>
+ 
+<p:dock position="bottom" itemWidth="50" maxWidth="70">
+    <p:menuitem value="Lista de contas" icon="/public/lista.png" url="mainPage.jsf"/>
+    <p:menuitem value="Cadastro de contas" icon="/public/bill.png" url="addBill.jsf"/>
+    <p:menuitem value="Cadastro de fornecedor" icon="/public/fornecedor.png" url="addProvider.jsf"/>
+    <p:menuitem value="Sair" icon="/public/sair.png" url="index.jsf"/>
+</p:dock>
 <h:form>
-	<p:dataTable var="bill" value="#{billsController.bills}">
+	<p:dataTable var="bill" value="#{billsController.bills}" paginator="true" rows="10">
 	    <p:column headerText="Data de vencimento">
 	        <h:outputText value="#{bill.dueDate}" />
 	    </p:column>
@@ -33,10 +49,7 @@
 	        </p:commandButton>
 	    </p:column>
 	</p:dataTable>
-	
-	<p:commandButton value="Adicionar conta a vencer" style="margin-right:20px;" action="#{billsController.addAccount}"/>
-	<p:commandButton value="Adicionar fornecedor" style="margin-right:20px;" action="#{billsController.addAProvider}"/>
-	
+
 </h:form>
 </body>
 

@@ -15,10 +15,15 @@ public class ProvidersController {
 		this.newProvider = provider;
 	}
 
-	public String registerProvider() {		
-		ProviderDAO dao = new ProviderDAO();
-		dao.registerProvider(newProvider);	
-		return "mainPage";
+	public String registerProvider() {
+		if (!this.newProvider.getCompany().equals("")) {
+			ProviderDAO dao = new ProviderDAO();
+			dao.registerProvider(newProvider);	
+			return "mainPage";
+		} else {
+			return "addProvider";
+		}
+		
 	}
 
 }

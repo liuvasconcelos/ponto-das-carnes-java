@@ -6,18 +6,30 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-
 </h:head>
+
 <body>
-<h:form> 
-	<p:panel id="login" header="Ponto das Carnes Web - Login">
-    	<h:outputText value="Login:"/>
-	    <p:inputText value="#{loginController.user.login}"/>
-    	<h:outputText value="Senha:"/>
-	    <p:inputText type="password" value="#{loginController.user.password}"/>
-	    <p:commandButton value="Entrar" style="margin-right:20px;" action="#{loginController.authenticate}"/>
-    </p:panel>
-</h:form>
+<h:panelGrid column="1" style="align: center;">
+   <h:panelGroup style="display:block; text-align:left; margin-left: 100%">
+	<h:form> 
+		<p:panel id="login" header="Ponto das Carnes Web" style="width:350px;">
+		<h:panelGrid>
+	    	<h:outputText value="Login:"/>
+		    <p:inputText value="#{loginController.user.login}" style="width:300px;"/>
+		</h:panelGrid>
+		<h:panelGrid>
+	    	<h:outputText value="Senha:"/>
+		    <p:inputText type="password" value="#{loginController.user.password}" style="width:300px;"/>
+		</h:panelGrid>
+		<h:panelGrid>
+		    <p:commandButton value="Entrar" style="width:310px;" action="#{loginController.authenticate}"/>
+		</h:panelGrid>
+	    </p:panel>
+    
+    	<p:commandButton value="Cadastrar Usuário" style="width:360px" action="#{loginController.goToRegisterUser}"/>
+	</h:form>
+   </h:panelGroup>
+</h:panelGrid>
 </body>
 
 </html>
