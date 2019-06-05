@@ -1,4 +1,4 @@
-package providers;
+package utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public abstract class ConexaoDAO {
+public abstract class ConnectionDAO {
 
     private static final String DRIVER = "org.postgresql.Driver";
     private static final String DBURL = "jdbc:postgresql://localhost:5432/ponto_das_carnes";
@@ -36,7 +36,7 @@ public abstract class ConexaoDAO {
         try {
             conn.close();
         } catch (SQLException ex) {
-            Logger.getLogger(ConexaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConnectionDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 } 

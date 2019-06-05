@@ -14,25 +14,32 @@
    background-color: white;
    border-width: 0px;
 }
+
+.ui-datatable {
+	vertical-align: middle; 
+	horizontal-align: middle;
+}
 </style>
 
 </h:head>
 <body>
  
 <p:dock position="bottom" itemWidth="50" maxWidth="70">
-    <p:menuitem value="Lista de contas" icon="/public/lista.png" url="mainPage.jsf"/>
-    <p:menuitem value="Cadastro de contas" icon="/public/bill.png" url="addBill.jsf"/>
-    <p:menuitem value="Cadastro de fornecedor" icon="/public/fornecedor.png" url="addProvider.jsf"/>
-    <p:menuitem value="Sair" icon="/public/sair.png" url="index.jsf"/>
+    <p:menuitem icon="/public/lista.png" url="mainPage.jsf"/>
+    <p:menuitem icon="/public/bill.png" url="addBill.jsf"/>
+    <p:menuitem icon="/public/fornecedor.png" url="addProvider.jsf"/>
+    <p:menuitem icon="/public/sair.png" url="index.jsf"/>
 </p:dock>
 <h:form>
-	<p:dataTable var="bill" value="#{billsController.bills}" paginator="true" rows="10">
+<p:panel>
+<h:outputText value="Contas a vencer"/>
+	<p:dataTable var="bill" value="#{billsController.bills}" paginator="true" rows="4">
 	    <p:column headerText="Data de vencimento">
 	        <h:outputText value="#{bill.dueDate}" />
 	    </p:column>
 	 
 	    <p:column headerText="Valor">
-	        <h:outputText value="#{bill.value}" />
+	        <h:outputText value="R$ #{bill.value}" />
 	    </p:column>
 	 
 	    <p:column headerText="Fornecedor">
@@ -44,13 +51,43 @@
 	    </p:column>
 	    
 	    <p:column headerText="Marcar como pago">
-	        <p:commandButton value="X" style="margin-right:20px;" action="#{billsController.payBill}" oncomplete="#{billsController.bills}" >
+	        <p:commandButton icon="ui-icon-check" align="center" action="#{billsController.payBill}" oncomplete="#{billsController.bills}" >
 	        	<f:setPropertyActionListener value="#{bill}" target="#{billsController.selectedBill}" />
 	        </p:commandButton>
 	    </p:column>
 	</p:dataTable>
-
+</p:panel>
 </h:form>
+
+<h:form>
+<p:panel>
+<h:outputText value="Contas pagas"/>
+	<p:dataTable var="payedbill" value="#{billsController.payedBills}" paginator="true" rows="4" style="vertical-align: middle; horizontal-align: middle">
+	    <p:column headerText="Data de vencimento">
+	        <h:outputText value="#{payedbill.dueDate}" />
+	    </p:column>
+	 
+	    <p:column headerText="Valor">
+	        <h:outputText value="R$ #{payedbill.value}" />
+	    </p:column>
+	 
+	    <p:column headerText="Fornecedor">
+	        <h:outputText value="#{payedbill.provider}" />
+	    </p:column>
+	 
+	    <p:column headerText="Nota fiscal">
+	        <h:outputText value="#{payedbill.invoice}" />
+	    </p:column>
+	    
+	    <p:column headerText="Reverter" style="horizontal-align:center">
+	        <p:commandButton icon="ui-icon-arrowrefresh-1-w" title="Icon Only" action="#{billsController.revertBill}" oncomplete="#{billsController.payedBills}" >
+	        	<f:setPropertyActionListener value="#{payedbill}" target="#{billsController.selectedPayedBill}" />
+	        </p:commandButton>
+	    </p:column>
+	</p:dataTable>
+</p:panel>
+</h:form>
+
 </body>
 
 </html>

@@ -1,6 +1,5 @@
 package bills;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 
@@ -11,6 +10,15 @@ public class BillsController {
 		
 	private Bill newBill = new Bill();
 	private Bill selectedBill = new Bill();
+	private Bill selectedPayedBill = new Bill();
+	
+	public Bill getSelectedPayedBill() {
+		return this.selectedBill;
+	}
+	
+	public void setSelectedPayedBill(Bill bill) {
+		this.selectedPayedBill = bill;
+	}
 	
 	public Bill getSelectedBill() {
 		return this.selectedBill;
@@ -30,7 +38,14 @@ public class BillsController {
 	
 	public List<Bill> getBills() {
 		BillsDAO dao = new BillsDAO();
-		List<Bill> bills = dao.getBills();
+		List<Bill> bills = dao.getBillsWith(true);
+				
+		return bills;
+	}
+	
+	public List<Bill> getPayedBills() {
+		BillsDAO dao = new BillsDAO();
+		List<Bill> bills = dao.getBillsWith(false);
 				
 		return bills;
 	}
@@ -62,12 +77,19 @@ public class BillsController {
 	
 	public String payBill() {	
 		BillsDAO dao = new BillsDAO();
-		dao.payBill(selectedBill);
+		dao.changeStatusOf(selectedBill, true);
 		return "mainPage";
 	}
 	
 	public String logout() {
 		return "index";
+	}
+	
+	
+	public String revertBill() {	
+		BillsDAO dao = new BillsDAO();
+		dao.changeStatusOf(selectedPayedBill, false);
+		return "mainPage";
 	}
 	
 

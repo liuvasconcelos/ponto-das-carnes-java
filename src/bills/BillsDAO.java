@@ -1,24 +1,28 @@
 package bills;
 
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import utils.ConnectionDAO;
+
 public class BillsDAO {
 
-	public List<Bill> getBills() {
+	public List<Bill> getBillsWith(Boolean status) {
 		
-		ConexaoDAO.createConnection();
+		ConnectionDAO.createConnection();
 		List<Bill> list = new ArrayList<Bill>();
 		
 		try {
-			ConexaoDAO.conn.createStatement();
-			String sql = "SELECT * FROM bills WHERE status = true ORDER BY due_date;";
+			ConnectionDAO.conn.createStatement();
+			String sql = "SELECT * FROM bills WHERE status = false ORDER BY due_date;";
+			if (status) {
+				sql = "SELECT * FROM bills WHERE status = true ORDER BY due_date;";
+			}
 			
-			PreparedStatement ps = ConexaoDAO.conn.prepareStatement(sql);
+			PreparedStatement ps = ConnectionDAO.conn.prepareStatement(sql);
 
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -39,20 +43,20 @@ public class BillsDAO {
 	}
 	
 	public void registerBill(Bill bill) {
-		ConexaoDAO.createConnection();
+		ConnectionDAO.createConnection();
 		
 		try {
-			ConexaoDAO.conn.createStatement();
+			ConnectionDAO.conn.createStatement();
 			String sql = "INSERT INTO bills (value, provider, invoice, due_date, status) VALUES (?, ?, ?, ?, true)";
 			
-			PreparedStatement ps = ConexaoDAO.conn.prepareStatement(sql);
+			PreparedStatement ps = ConnectionDAO.conn.prepareStatement(sql);
 			
 			ps.setDouble(1, bill.getValue());
 			ps.setString(2, bill.getProvider());
 			ps.setString(3, bill.getInvoice());
 			ps.setString(4, bill.getDueDate());
 
-			ResultSet rs = ps.executeQuery();
+			ps.executeQuery();
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -60,19 +64,23 @@ public class BillsDAO {
 		
 	}
 	
-	public void payBill(Bill bill) {
-		ConexaoDAO.createConnection();
+	public void changeStatusOf(Bill bill, Boolean pay) {
+		ConnectionDAO.createConnection();
 		
 		try {
-			ConexaoDAO.conn.createStatement();
-			String sql = "UPDATE bills SET status = false WHERE invoice = ? AND due_date = ?";
+			ConnectionDAO.conn.createStatement();
+			String sql = "UPDATE bills SET status = true WHERE invoice = ? AND due_date = ?";
 			
-			PreparedStatement ps = ConexaoDAO.conn.prepareStatement(sql);
+			if (pay) {
+				sql = "UPDATE bills SET status = false WHERE invoice = ? AND due_date = ?";
+			}
+			
+			PreparedStatement ps = ConnectionDAO.conn.prepareStatement(sql);
 			
 			ps.setString(1, bill.getInvoice());
 			ps.setString(2, bill.getDueDate());
 
-			ResultSet rs = ps.executeQuery();
+			ps.executeQuery();
 		
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -18,18 +18,14 @@
 <body>
 
 <p:dock position="bottom" itemWidth="50" maxWidth="70">
-    <p:menuitem value="Lista de contas" icon="/public/lista.png" url="mainPage.jsf"/>
-    <p:menuitem value="Cadastro de contas" icon="/public/bill.png" url="addBill.jsf"/>
-    <p:menuitem value="Cadastro de fornecedor" icon="/public/fornecedor.png" url="addProvider.jsf"/>
-    <p:menuitem value="Sair" icon="/public/sair.png" url="index.jsf"/>
+    <p:menuitem icon="/public/lista.png" url="mainPage.jsf"/>
+    <p:menuitem icon="/public/bill.png" url="addBill.jsf"/>
+    <p:menuitem icon="/public/fornecedor.png" url="addProvider.jsf"/>
+    <p:menuitem icon="/public/sair.png" url="index.jsf"/>
 </p:dock>
 
  <h:form> 
- 
- <h:panelGrid column="1" style="align: center;">
-   <h:panelGroup style="display:block; text-align:left; margin-left: 100%">
-   
-	<h:form> 
+	<div align="center" >
 		<p:panel id="billregister" header="Cadastro de conta" style="width:350px;">
 		<h:panelGrid>
 	    	<h:outputText value="Nota fiscal:"/>
@@ -54,10 +50,7 @@
 			<p:commandButton value="Salvar" action="#{billsController.registerBill}" style="width:310px;"/>
 		</h:panelGrid>
 	    </p:panel>
-   	</h:form>
-   </h:panelGroup>
-</h:panelGrid>
-    
+	</div>    
 </h:form>
 </body>
 

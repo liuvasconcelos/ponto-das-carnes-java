@@ -26,12 +26,18 @@ public class LoginController {
 	}
 	
 	public String authenticate(){
-        LoginDAO dao = new LoginDAO();
-        Boolean authenticationIsCorrect = dao.auth(this.user);
-        
-        if (authenticationIsCorrect) {
-        	return "mainPage";
-        }
+		if (!user.getLogin().equals("") && !user.getPassword().equals("")) {
+			LoginDAO dao = new LoginDAO();
+	        Boolean authenticationIsCorrect = dao.auth(this.user);
+	        
+	        if (authenticationIsCorrect) {
+	        	return "mainPage";
+	        } else {
+	        	return "errorPage";
+	        }
+		} else {
+			
+		}
         
         return "errorPage";
     }

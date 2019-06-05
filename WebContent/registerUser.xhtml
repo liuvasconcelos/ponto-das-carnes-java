@@ -8,12 +8,8 @@
 <h:head>
 </h:head>
 <body>
-<p:tooltip />
 <h:form> 
- <h:panelGrid column="1" style="align: center;">
-   <h:panelGroup style="display:block; text-align:left; margin-left: 100%">
-   
-	<h:form> 
+	<div align="center" >
 		<p:panel id="userregister" header="Cadastro de usuário" style="width:350px;">
 		<h:panelGrid>
 	    	<h:outputText value="Nome completo:"/>
@@ -30,10 +26,7 @@
 			<p:commandButton value="Voltar" action="#{loginController.returnToLogin}" style="width:150px;"/>
 			<p:commandButton value="Salvar" action="#{loginController.registerUser}" style="width:150px;"/>
 	    </p:panel>
-   	</h:form>
-   </h:panelGroup>
-</h:panelGrid>
-    
+	</div>
 </h:form>
 </body>
 
