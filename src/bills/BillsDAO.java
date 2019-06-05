@@ -30,14 +30,15 @@ public class BillsDAO {
 				String provider = rs.getString("provider");
 				String invoice = rs.getString("invoice");
 				String dueDate = rs.getString("due_date");
+				Integer id = rs.getInt("id");
 
-				Bill newBill = new Bill(value, provider, invoice, dueDate);
+				Bill newBill = new Bill(id, value, provider, invoice, dueDate);
 				list.add(newBill);
 			} 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		ConnectionDAO.close();
         return list;
 
 	}
@@ -61,7 +62,7 @@ public class BillsDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		ConnectionDAO.close();
 	}
 	
 	public void changeStatusOf(Bill bill, Boolean pay) {
@@ -85,6 +86,6 @@ public class BillsDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		ConnectionDAO.close();
 	}
 }

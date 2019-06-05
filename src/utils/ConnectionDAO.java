@@ -32,7 +32,7 @@ public abstract class ConnectionDAO {
         return conn;
     }
     
-    public void Close() {
+    public static void close() {
         try {
             conn.close();
         } catch (SQLException ex) {

@@ -28,7 +28,7 @@ public class ProviderDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		ConnectionDAO.close();
 	}
 	
 	
@@ -51,7 +51,7 @@ public class ProviderDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		ConnectionDAO.close();
         return list;
 
 	}

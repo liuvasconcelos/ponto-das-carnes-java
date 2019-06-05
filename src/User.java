@@ -1,12 +1,14 @@
 
 public class User {
 
+	private Integer id;
 	private String fullName;
 	private String login;
 	private String password;
 
-	public User(String fullName, String login, String password) {
+	public User(Integer id, String fullName, String login, String password) {
 		super();
+		this.id = id;
 		this.fullName = fullName;
 		this.login = login;
 		this.password = password;
@@ -14,9 +16,20 @@ public class User {
 	
 	public User() {
 		super();
+		this.id = 0;
 		this.fullName = "";
 		this.login = "";
 		this.password = "";
+	}
+	
+	
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getFullName() {

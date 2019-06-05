@@ -18,15 +18,18 @@ public class LoginDAO {
 
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
+				ConnectionDAO.close();
 				return true;
 			} else {
+				ConnectionDAO.close();
 				return false;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			ConnectionDAO.close();
 			return false;
 		}
-
+		
 	}
 	
 	public void registerUser(User user) {
@@ -47,6 +50,7 @@ public class LoginDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		ConnectionDAO.close();
 	}
 
 }
